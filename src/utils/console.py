@@ -2,6 +2,10 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.syntax import Syntax
+from rich import box
+
+from rich.progress import track #test
+import time #remove
 
 console = Console()
 
@@ -19,9 +23,10 @@ def print_main_menu(os_name: str, app_version: str):
         options,
         title = title,
         #subtitle="[dim]Pick an option[/dim]", #Texto inferior
-        border_style="blue", #Color de marco
+        border_style="cyan", #Color de marco
         expand=False,#Se ajusta al texto en lugar de expandirse en toda la pantalla
-        padding=(1,5)
+        padding=(1,5),
+        box=box.DOUBLE
     )
    
     console.clear()
@@ -42,7 +47,7 @@ def show_basic_text_input(message: str, clear=False) -> str:
     user_input = Prompt.ask(message)
     return user_input.strip()
 
-def show_pro_text_input(title:str, message: str, clear=False)->str:
+def show_pro_text_input(title:str, message: str, clear=False, expand=False)->str:
     panel = Panel(
         message,
         title=title,
@@ -62,6 +67,22 @@ def show_pro_text_input(title:str, message: str, clear=False)->str:
 def print_message(message: str):
     console.print(message)
 
+def print_styled_message(message: str, title: str, clear=False,border_style="cyan", expand=False):
+    panel = Panel(
+        message,
+        title=title,
+        title_align="left",
+        border_style=border_style,
+        padding=(0,2),
+        expand=expand,
+        box=box.DOUBLE
+    )
+
+    if clear:
+        console.clear()
+    
+    console.print(panel)
+
 def print_file(content: str, file_name: str, file_suffix: str):
     file_type = file_suffix.lstrip(".") or "text"
 
@@ -79,11 +100,16 @@ def print_file(content: str, file_name: str, file_suffix: str):
         title=f"[bold cyan]PYeditor[/bold cyan] | [bold yellow]{file_name}[/bold yellow]",
         subtitle="[dim]READ MODE[/dim]",
         border_style="cyan",
-        padding=(1,1)
+        padding=(1,1),
+        box=box.HEAVY
     )
 
     console.clear()
     console.print(visor)
+
+def print_load(): #Just a test, dont use
+    for i in track(range(100), description="Loading file..."):
+        time.sleep(0.03)
 
 def clear():
     console.clear()
