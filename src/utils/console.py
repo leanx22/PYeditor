@@ -22,16 +22,14 @@ def print_main_menu(os_name: str, app_version: str):
     menu = Panel(
         options,
         title = title,
-        #subtitle="[dim]Pick an option[/dim]", #Texto inferior
-        border_style="cyan", #Color de marco
-        expand=False,#Se ajusta al texto en lugar de expandirse en toda la pantalla
+        border_style="cyan",
+        expand=False,
         padding=(1,5),
         box=box.DOUBLE
     )
    
     console.clear()
     console.print(menu)
-
 
 def show_prompt(message: str, options: list[str], show_options: bool) -> str:
     user_selection = Prompt.ask(
@@ -67,7 +65,7 @@ def show_pro_text_input(title:str, message: str, clear=False, expand=False)->str
 def print_message(message: str):
     console.print(message)
 
-def print_styled_message(message: str, title: str, clear=False,border_style="cyan", expand=False):
+def print_styled_message(message: str, title: str, clear=False,border_style="cyan", expand=False, subtitle=""):
     panel = Panel(
         message,
         title=title,
@@ -75,7 +73,8 @@ def print_styled_message(message: str, title: str, clear=False,border_style="cya
         border_style=border_style,
         padding=(0,2),
         expand=expand,
-        box=box.DOUBLE
+        box=box.DOUBLE,
+        subtitle=subtitle
     )
 
     if clear:

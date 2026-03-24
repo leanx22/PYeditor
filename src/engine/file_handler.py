@@ -38,7 +38,6 @@ def load_file_content(path: Path) -> list[str]:
     with path.open("r", encoding="utf-8") as f:
         content = f.readlines()
 
-    #console.print_file(full_content, path.name, path.suffix)
     return content
 
 def save_file(content: list[str], path: Path):
