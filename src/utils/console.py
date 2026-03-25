@@ -9,7 +9,7 @@ import time #remove
 
 console = Console()
 
-def print_main_menu(os_name: str, app_version: str):
+def print_main_menu(app_author: str,os_name: str, app_version: str):
 
     options = (
         "[bold cyan]1.[/bold cyan] Open file\n"
@@ -17,7 +17,7 @@ def print_main_menu(os_name: str, app_version: str):
         "[bold cyan]3.[/bold cyan] Exit"
     )
 
-    title = f"[bold yellow]PYeditor[/bold yellow] - Leandro Guia - {os_name} - v{app_version}"
+    title = f"[bold yellow]PYeditor[/bold yellow] - {app_author} - {os_name} - v{app_version}"
 
     menu = Panel(
         options,

@@ -1,10 +1,11 @@
 #System
 import sys
+import platform
 
 #Utils
-from src.utils import os_utils as os
 from src.utils import console
 from src.utils import path
+from src.config import constants
 
 #editor
 from src.engine import file_handler
@@ -14,14 +15,13 @@ from src.engine.actions import edit
 from pathlib import Path
 
 #DEFS
-OS_NAME = os.get_os_name()
-APP_VERSION = "1.0"
+OS_NAME = platform.system()
 
 def main(args: list[str]):
 
     while True:
 
-        console.print_main_menu(OS_NAME, APP_VERSION)
+        console.print_main_menu(constants.APP_AUTHOR, OS_NAME, constants.APP_VERSION)
         
         user_input = console.show_prompt(
             "\n[bold green] Select an option[/bold green]",

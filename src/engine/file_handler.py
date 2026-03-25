@@ -1,6 +1,6 @@
 from pathlib import Path
 from src.utils import console
-from src.definitions.const import ALLOWED_FILES
+from src.config import configs
 
 def is_valid_file(path: Path) -> bool:
     suffix = path.suffix.lower()
@@ -8,7 +8,7 @@ def is_valid_file(path: Path) -> bool:
     if suffix == "":
         return True
     
-    return suffix in ALLOWED_FILES
+    return suffix in configs.ALLOWED_FILES
 
 def create_file(path: Path):
     if path.exists():
